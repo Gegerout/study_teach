@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:study_teach/auth/data/repositories/data_repository.dart';
+import 'package:study_teach/auth/domain/usecases/user_usecase.dart';
 
 final signupProvider = ChangeNotifierProvider<SignUpNotifier>((ref) => SignUpNotifier());
 
@@ -42,5 +44,10 @@ class SignUpNotifier extends ChangeNotifier {
       isChecked = false;
     }
     notifyListeners();
+  }
+
+  void createUser(String name, String phone, String email) async {
+    final user = UserUseCase(name, phone, email);
+    await DataRepository().createUser(user);
   }
 }

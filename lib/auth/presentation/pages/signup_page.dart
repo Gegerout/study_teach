@@ -347,6 +347,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                                     backgroundColor: Colors.transparent,
                                     shadowColor: Colors.transparent),
                                 onPressed: ref.watch(signupProvider).isChecked ? () {
+                                  ref.read(signupProvider.notifier).createUser(nameCont.text, phoneCont.text, emailCont.text);
                                   Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
                                 } : null,
                                 child: Text(
