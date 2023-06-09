@@ -14,7 +14,7 @@ class WelcomeScreen extends StatelessWidget {
         children: [
           Center(
             child: Image.asset(
-              "assets/images/blue_bg.png",
+              "assets/images/welcome_bg.png",
               width: double.infinity,
               fit: BoxFit.fill,
             ),
