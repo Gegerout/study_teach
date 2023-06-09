@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:study_teach/auth/presentation/pages/signin_page.dart';
 import 'package:study_teach/auth/presentation/states/auth_provider.dart';
 import 'package:study_teach/home/presentation/pages/home_page.dart';
 
@@ -373,7 +374,9 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                             SizedBox(
                               width: 71,
                                 child: TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => SignInPage()));
+                                    },
                                     child: Text(
                                       "Sign in",
                                       style: GoogleFonts.openSans(
