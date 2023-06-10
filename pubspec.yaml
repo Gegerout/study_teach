@@ -21,11 +21,12 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^2.0.0
-  #flutter_native_splash: ^2.3.1
+  flutter_native_splash: ^2.3.1
 
 flutter_native_splash:
   android: true
-  background_image: assets/images/splash_image.png
+  background_image: assets/images/blue_bg.png
+  image: assets/images/splash_icon_4.png
   android_12:
     image: assets/images/splash_icon.png
     color: "#0046FB"
