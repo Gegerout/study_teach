@@ -104,7 +104,7 @@ class HomeWidget extends ConsumerWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 8),
-                      child: Text("Hello ${value.name}", style: GoogleFonts.openSans(fontWeight: FontWeight.w600, fontSize: 20),),
+                      child: Text("Hello ${value?.name}", style: GoogleFonts.openSans(fontWeight: FontWeight.w600, fontSize: 20),),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 53),

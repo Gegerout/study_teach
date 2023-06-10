@@ -4,9 +4,12 @@ import 'package:study_teach/home/domain/usecases/user_usecase.dart';
 
 class DataRepository extends Repository {
   @override
-  Future<UserUseCase> loadUser() async {
+  Future<UserUseCase?> loadUser() async {
     final data = await LocalData().loadUser();
-    final usecase = UserUseCase(data.name, data.phone, data.email);
-    return usecase;
+    if(data != null) {
+      final usecase = UserUseCase(data.name, data.phone, data.email);
+      return usecase;
+    }
+    return null;
   }
 }

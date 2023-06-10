@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:study_teach/home/presentation/pages/home_page.dart';
 
 class StudyPage extends StatelessWidget {
   const StudyPage({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class StudyPage extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         leading: IconButton(onPressed: () {
-          Navigator.pop(context);
+          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
         }, icon: const Icon(Icons.arrow_back_ios_new, size: 16,),),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
