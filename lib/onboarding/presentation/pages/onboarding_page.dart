@@ -151,6 +151,7 @@ class OnboardingPage extends ConsumerWidget {
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.transparent,
             shadowColor: Colors.transparent,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           ),
           child: Text(
             "Selanjutnya",

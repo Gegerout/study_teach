@@ -10,4 +10,10 @@ class LocalData {
     final File file = File("${dir.path}/userData.json");
     file.writeAsStringSync(json.encode(user), flush: true, mode: FileMode.write);
   }
+
+  Future<void> loginUser(UserModel user) async {
+    var dir = await getTemporaryDirectory();
+    final File file = File("${dir.path}/userData.json");
+    file.writeAsStringSync(json.encode(user), flush: true, mode: FileMode.write);
+  }
 }

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:study_teach/auth/presentation/pages/signin_page.dart';
 import 'package:study_teach/auth/presentation/states/auth_provider.dart';
+import 'package:study_teach/core/utils/textinput_formatter.dart';
 import 'package:study_teach/home/presentation/pages/home_page.dart';
 
 class SignUpPage extends ConsumerStatefulWidget {
@@ -25,8 +26,8 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
     final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-        body: SingleChildScrollView(
-      child: Stack(
+      resizeToAvoidBottomInset: false,
+        body: Stack(
         children: [
           Center(
             child: Image.asset(
@@ -95,7 +96,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
               Padding(
                 padding: EdgeInsets.only(top: height * 0.03),
                 child: Container(
-                  height: height * 0.69,
+                  height: height * 0.62,
                   width: double.infinity,
                   decoration: const BoxDecoration(
                       color: Colors.white,
@@ -119,7 +120,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                         Padding(
                           padding: const EdgeInsets.only(left: 34),
                           child: Text(
-                            "Hello there, fill in below to create an account",
+                            "Hello there, fill in below to create \nan account",
                             style: GoogleFonts.openSans(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 18,
@@ -204,6 +205,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                                 color: const Color(0xFFE9E9E9)),
                             child: TextFormField(
                               controller: phoneCont,
+                              keyboardType: TextInputType.phone,
                               onChanged: (value) {
                                 ref.read(signupProvider.notifier).checkCreds(nameCont.text, value, emailCont.text, passwordCont.text);
                               },
@@ -253,6 +255,10 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                                 color: const Color(0xFFE9E9E9)),
                             child: TextFormField(
                               controller: emailCont,
+                              inputFormatters: [
+                                LowerCaseTextFormatter()
+                              ],
+                              keyboardType: TextInputType.emailAddress,
                               onChanged: (value) {
                                 ref.read(signupProvider.notifier).checkCreds(nameCont.text, phoneCont.text, value, passwordCont.text);
                               },
@@ -316,7 +322,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                                     setState(() {
                                       isVisible = !isVisible;
                                     });
-                                  }, icon: isVisible ? Image.asset("assets/images/invisible_icon.png") : const Icon(Icons.visibility, color: Color(0xFFEB4335,)),),
+                                  }, icon: isVisible ? Icon(Icons.visibility_off, color: ref.watch(signupProvider).isPassword ? const Color(0xFF007BFF) : const Color(0xFFEB4335,),) : Icon(Icons.visibility, color: ref.watch(signupProvider).isPassword ? const Color(0xFF007BFF) : const Color(0xFFEB4335,)),),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                       borderSide: BorderSide.none),
@@ -329,7 +335,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 33),
+                          padding: const EdgeInsets.only(top: 38),
                           child: Center(
                             child: Container(
                               height: 40,
@@ -362,7 +368,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 12),
+                          padding: const EdgeInsets.only(top: 16),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -390,10 +396,10 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width - 224, right: MediaQuery.of(context).size.width - 224, top: 4),
+                          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width - 224, right: MediaQuery.of(context).size.width - 224, top: 10),
                           child: const Divider(height: 1, color: Color(0xFF959595),),
                         ),
-                        const SizedBox(height: 30,)
+                        const SizedBox(height: 80,)
                       ],
                     ),
                   ),
@@ -403,6 +409,6 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
           )
         ],
       ),
-    ));
+    );
   }
 }

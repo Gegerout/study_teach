@@ -51,3 +51,38 @@ class SignUpNotifier extends ChangeNotifier {
     await DataRepository().createUser(user);
   }
 }
+
+final signinProvider = ChangeNotifierProvider<SignInNotifier>((ref) => SignInNotifier());
+
+class SignInNotifier extends ChangeNotifier {
+  bool isEmail = false;
+  bool isPassword = false;
+  bool isChecked = false;
+
+  void checkCreds(String email, String password) {
+    if(RegExp(r"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$").hasMatch(email) || email.length > 2) {
+      isEmail = true;
+    }
+    else {
+      isEmail = false;
+    }
+    if(RegExp(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$").hasMatch(password)) {
+      isPassword = true;
+    }
+    else {
+      isPassword = false;
+    }
+    if(isEmail && isPassword) {
+      isChecked = true;
+    }
+    else {
+      isChecked = false;
+    }
+    notifyListeners();
+  }
+
+  void loginUser(String email) async {
+    final user = UserUseCase("name", "phone", email);
+    await DataRepository().loginUser(user);
+  }
+}

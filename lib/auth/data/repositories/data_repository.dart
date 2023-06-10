@@ -10,4 +10,10 @@ class DataRepository extends Repository {
     await LocalData().createUser(model);
   }
 
+  @override
+  Future<void> loginUser(UserUseCase user) async {
+    final model = UserModel(user.name, user.phone, user.email);
+    await LocalData().loginUser(model);
+  }
+
 }
