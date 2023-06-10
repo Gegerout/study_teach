@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:study_teach/core/widgets/nav_bar.dart';
+import 'package:study_teach/home/presentation/pages/light_page.dart';
+import 'package:study_teach/home/presentation/pages/notifications_page.dart';
+import 'package:study_teach/home/presentation/pages/profile_page.dart';
+import 'package:study_teach/home/presentation/pages/study_page.dart';
 import 'package:study_teach/home/presentation/states/home_provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,10 +22,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final screens = [
       HomeWidget(),
-      HomeWidget(),
-      HomeWidget(),
-      HomeWidget(),
-      HomeWidget(),
+      StudyPage(),
+      LightPage(),
+      NotificationsPage(),
+      ProfilePage(),
     ];
 
     return Scaffold(
@@ -29,7 +33,7 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(bottom: 15, left: 28, right: 32),
         child: Material(
-          elevation: 10,
+          elevation: 5,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(100),
           ),
@@ -317,7 +321,7 @@ class HomeWidget extends ConsumerWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
-        elevation: 10,
+        elevation: 5,
         child: Column(
           children: [
             const SizedBox(height: 15,),
