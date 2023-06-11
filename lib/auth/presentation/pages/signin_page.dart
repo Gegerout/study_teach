@@ -257,7 +257,26 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                                   onPressed: ref.watch(signinProvider).isChecked ? () {
                                     ref.read(signinProvider.notifier).loginUser(emailCont.text);
                                     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
-                                  } : null,
+                                  } : () {
+                                    showDialog(context: context, builder: (context) {
+                                      if(!ref.watch(signinProvider).isEmail) {
+                                        return AlertDialog(
+                                          title: const Text("Wrong Email"),
+                                          actions: [
+                                            ElevatedButton(onPressed: () => Navigator.pop(context), child: const Text("Ok"))
+                                          ],
+                                        );
+                                      }
+                                      else {
+                                        return AlertDialog(
+                                          title: const Text("Wrong Password"),
+                                          actions: [
+                                            ElevatedButton(onPressed: () => Navigator.pop(context), child: const Text("Ok"))
+                                          ],
+                                        );
+                                      }
+                                    });
+                                  },
                                   child: Text(
                                     "Sign in",
                                     style: GoogleFonts.openSans(

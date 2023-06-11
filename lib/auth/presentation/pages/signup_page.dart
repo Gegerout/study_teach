@@ -356,7 +356,42 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                                   onPressed: ref.watch(signupProvider).isChecked ? () {
                                     ref.read(signupProvider.notifier).createUser(nameCont.text, phoneCont.text, emailCont.text);
                                     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
-                                  } : null,
+                                  } : () {
+                                    showDialog(context: context, builder: (context) {
+                                      if(!ref.watch(signupProvider).isEmail) {
+                                        return AlertDialog(
+                                          title: const Text("Wrong Email"),
+                                          actions: [
+                                            ElevatedButton(onPressed: () => Navigator.pop(context), child: const Text("Ok"))
+                                          ],
+                                        );
+                                      }
+                                      else if(!ref.watch(signupProvider).isPhone) {
+                                        return AlertDialog(
+                                          title: const Text("Wrong Phone"),
+                                          actions: [
+                                            ElevatedButton(onPressed: () => Navigator.pop(context), child: const Text("Ok"))
+                                          ],
+                                        );
+                                      }
+                                      else if(!ref.watch(signupProvider).isName) {
+                                        return AlertDialog(
+                                          title: const Text("Wrong Name"),
+                                          actions: [
+                                            ElevatedButton(onPressed: () => Navigator.pop(context), child: const Text("Ok"))
+                                          ],
+                                        );
+                                      }
+                                      else {
+                                        return AlertDialog(
+                                          title: const Text("Wrong Password"),
+                                          actions: [
+                                            ElevatedButton(onPressed: () => Navigator.pop(context), child: const Text("Ok"))
+                                          ],
+                                        );
+                                      }
+                                    });
+                                  },
                                   child: Text(
                                     "Sign up",
                                     style: GoogleFonts.openSans(
