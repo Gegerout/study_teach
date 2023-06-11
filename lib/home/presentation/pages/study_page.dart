@@ -2,26 +2,82 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:study_teach/home/presentation/pages/home_page.dart';
 
-class StudyPage extends StatelessWidget {
-  const StudyPage({Key? key}) : super(key: key);
+class StudyPage extends StatefulWidget {
+  StudyPage({Key? key}) : super(key: key);
+
+  @override
+  State<StudyPage> createState() => _StudyPageState();
+}
+
+class _StudyPageState extends State<StudyPage> {
+  GlobalKey firstKey = GlobalKey();
+
+  GlobalKey secondKey = GlobalKey();
+
+  late Offset tapXY;
+  late Offset tapXY2;
+
+  late RenderBox overlay;
+  late RenderBox overlay2;
 
   @override
   Widget build(BuildContext context) {
+    overlay = Overlay.of(context).context.findRenderObject() as RenderBox;
+    overlay2 = Overlay.of(context).context.findRenderObject() as RenderBox;
+
+    void _showPopupMenu1() async {
+      await showMenu(
+        context: context,
+        position: relRectSize,
+        items: [
+          const PopupMenuItem<String>(
+              child: Text('One'), value: 'Doge'),
+          const PopupMenuItem<String>(
+              child: Text('Two'), value: 'Lion'),
+        ],
+        elevation: 8.0,
+      );
+    }
+
+    void _showPopupMenu2() async {
+      await showMenu(
+        context: context,
+        position: relRectSize2,
+        items: [
+          const PopupMenuItem<String>(
+              child: Text('One'), value: 'Doge'),
+          const PopupMenuItem<String>(
+              child: Text('Two'), value: 'Lion'),
+        ],
+        elevation: 8.0,
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
         centerTitle: true,
         leading: IconButton(onPressed: () {
           Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
-        }, icon: const Icon(Icons.arrow_back_ios_new, size: 16,),),
+        }, icon: const Icon(Icons.arrow_back_ios_new, size: 16, color: Colors.black,),),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(width: 80,),
-            Text("Detail", style: GoogleFonts.openSans(fontWeight: FontWeight.w600, fontSize: 20),),
+            Text("Detail", style: GoogleFonts.openSans(fontWeight: FontWeight.w600, fontSize: 20, color: Colors.black),),
             const SizedBox(width: 82,),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert))
+            Container(
+              key: firstKey,
+              child: InkWell(
+                onTapDown: getPosition,
+                onLongPress: _showPopupMenu1,
+                child: IconButton(
+                    onPressed: () {
+                  _showPopupMenu1();
+                }, icon: const Icon(Icons.more_vert, color: Colors.black,)),
+              ),
+            )
           ],
         )
       ),
@@ -46,7 +102,10 @@ class StudyPage extends StatelessWidget {
                           ]
                       )
                   ),
-                  child: Image.asset("assets/images/numbers_image.png")
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.asset("assets/images/numbers_image.png", width: 304.47, height: 198.61, fit: BoxFit.scaleDown,),
+                  )
                 ),
               ),
             ),
@@ -171,7 +230,14 @@ class StudyPage extends StatelessWidget {
                                 const SizedBox(width: 50,),
                                 Padding(
                                   padding: const EdgeInsets.only(),
-                                  child: IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert,)),
+                                  child: InkWell(
+                                    onTapDown: getPosition2,
+                                    onLongPress: _showPopupMenu2,
+                                    child: IconButton(onPressed: () {
+                                      //print("hello");
+                                      _showPopupMenu2();
+                                    }, icon: const Icon(Icons.more_vert,)),
+                                  ),
                                 )
                               ],
                             ),
@@ -239,5 +305,16 @@ class StudyPage extends StatelessWidget {
         ),
       )
     );
+  }
+
+  RelativeRect get relRectSize => RelativeRect.fromSize(tapXY & const Size(40,40), overlay.size);
+  RelativeRect get relRectSize2 => RelativeRect.fromSize(tapXY2 & const Size(40,40), overlay2.size);
+
+  // ↓ get the tap position Offset
+  void getPosition(TapDownDetails detail) {
+    tapXY = detail.globalPosition;
+  }
+  void getPosition2(TapDownDetails detail) {
+    tapXY2 = detail.globalPosition;
   }
 }

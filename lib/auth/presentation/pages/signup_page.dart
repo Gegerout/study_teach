@@ -164,7 +164,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                                   color: const Color(0xFF888888)),
                               decoration: InputDecoration(
                                   contentPadding: const EdgeInsets.only(left: 18),
-                                  suffixIcon: ref.watch(signupProvider).isName ? Image.asset("assets/images/success_icon.png") : null,
+                                  suffixIcon: ref.watch(signupProvider).isName ? Image.asset("assets/images/success_icon.png") : const Icon(Icons.close, color: Color(0xFFEB4335),),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                       borderSide: BorderSide.none),
@@ -215,7 +215,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                                   color: const Color(0xFF888888)),
                               decoration: InputDecoration(
                                   contentPadding: const EdgeInsets.only(left: 18),
-                                  suffixIcon: ref.watch(signupProvider).isPhone ? Image.asset("assets/images/success_icon.png") : null,
+                                  suffixIcon: ref.watch(signupProvider).isPhone ? Image.asset("assets/images/success_icon.png") : const Icon(Icons.close, color: Color(0xFFEB4335),),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                       borderSide: BorderSide.none),
@@ -268,7 +268,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                                   color: const Color(0xFF888888)),
                               decoration: InputDecoration(
                                   contentPadding: const EdgeInsets.only(left: 18),
-                                  suffixIcon: ref.watch(signupProvider).isEmail ? Image.asset("assets/images/success_icon.png") : null,
+                                  suffixIcon: ref.watch(signupProvider).isEmail ? Image.asset("assets/images/success_icon.png") : const Icon(Icons.close, color: Color(0xFFEB4335),),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                       borderSide: BorderSide.none),

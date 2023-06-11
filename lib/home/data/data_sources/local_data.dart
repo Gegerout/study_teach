@@ -14,4 +14,19 @@ class LocalData {
     }
     return null;
   }
+
+  Future<void> saveUserAvatar(String path) async {
+    var dir = await getTemporaryDirectory();
+    final File file = File("${dir.path}/userAvatar.json");
+    file.writeAsStringSync(json.encode(path));
+  }
+
+  Future<String?> loadUserAvatar() async {
+    var dir = await getTemporaryDirectory();
+    final File file = File("${dir.path}/userAvatar.json");
+    if(file.existsSync()) {
+      return json.decode(file.readAsStringSync());
+    }
+    return null;
+  }
 }

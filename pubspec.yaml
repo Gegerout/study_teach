@@ -15,6 +15,7 @@ dependencies:
   google_fonts: ^5.0.0
   dots_indicator: ^3.0.0
   path_provider:
+  camera: ^0.10.5+2
 
 dev_dependencies:
   flutter_test:
@@ -26,7 +27,7 @@ dev_dependencies:
 flutter_native_splash:
   android: true
   background_image: assets/images/blue_bg.png
-  image: assets/images/splash_icon_4.png
+  image: assets/images/splash_icon_2.png
   android_12:
     image: assets/images/splash_icon.png
     color: "#0046FB"

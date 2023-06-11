@@ -1,10 +1,15 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:study_teach/home/presentation/pages/home_page.dart';
 import 'package:study_teach/home/presentation/states/home_provider.dart';
 import 'package:study_teach/onboarding/presentation/pages/onboarding_page.dart';
 
-void main() {
+late List<CameraDescription> cameras;
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  cameras = await availableCameras();
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -18,13 +23,13 @@ class MyApp extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        //useMaterial3: true,
       ),
       home: Scaffold(
           body: ref.watch(getUserProvider).when(
               data: (value) {
                 if(value != null) {
-                  return HomePage();
+                  return OnboardingPage();
                 }
                 return OnboardingPage();
               },

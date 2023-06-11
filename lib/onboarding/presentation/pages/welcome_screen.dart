@@ -82,7 +82,10 @@ class WelcomeScreen extends StatelessWidget {
                               Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()));
                             },
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFF4285F4)
+                                backgroundColor: const Color(0xFF4285F4),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)
+                              )
                             ),
                             child: Text(
                               "Create an account",

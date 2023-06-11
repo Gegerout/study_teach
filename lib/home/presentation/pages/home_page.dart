@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,10 +35,10 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(bottom: 15, left: 28, right: 32),
         child: Material(
+          color: Colors.transparent,
           elevation: 5,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(100),
-          ),
+          //shadowColor: Colors.transparent,
+          borderRadius: BorderRadius.circular(100),
           child: Container(
             width: 354,
             height: 89,
@@ -76,11 +78,23 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class HomeWidget extends ConsumerWidget {
+class HomeWidget extends ConsumerStatefulWidget {
   const HomeWidget({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<HomeWidget> createState() => _HomeWidgetState();
+}
+
+class _HomeWidgetState extends ConsumerState<HomeWidget> {
+
+  @override
+  void initState() {
+    super.initState();
+    ref.refresh(getAvatarProvider);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     var scaffoldKey = GlobalKey<ScaffoldState>();
 
     return ref.watch(getUserProvider).when(
@@ -89,7 +103,7 @@ class HomeWidget extends ConsumerWidget {
               key: scaffoldKey,
               drawer: const NavBar(),
               appBar: AppBar(
-                backgroundColor: Colors.white,
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                 elevation: 0,
                 //centerTitle: true,
                 leading: IconButton(onPressed: () {
@@ -104,11 +118,11 @@ class HomeWidget extends ConsumerWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 8),
-                      child: Text("Hello ${value?.name}", style: GoogleFonts.openSans(fontWeight: FontWeight.w600, fontSize: 20),),
+                      child: Text("Hello ${value?.name}", style: GoogleFonts.openSans(fontWeight: FontWeight.w600, fontSize: 20, color: Colors.black),),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 53),
-                      child: Image.asset("assets/images/user_avatar.png"),
+                      child: ref.watch(getAvatarProvider).value == null ? Image.asset("assets/images/user_avatar.png") : ClipRRect(borderRadius: BorderRadius.circular(50), child: SizedBox(width: 50, height:50, child: Image.file(File(ref.watch(getAvatarProvider).value!), width: 50, height: 50, fit: BoxFit.fill,))),
                     ),
                   ],
                 ),
@@ -274,7 +288,7 @@ class HomeWidget extends ConsumerWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 32, top: 29),
                       child: SizedBox(
-                        height: 234,
+                        height: 250,
                         child: ListView(
                           scrollDirection: Axis.horizontal,
                           children: [
@@ -283,7 +297,7 @@ class HomeWidget extends ConsumerWidget {
                             userCard("assets/images/avatar_2.png", "Muhammad", "Guru Fisika", "1581"),
                             const SizedBox(width: 18,),
                             userCard("assets/images/avatar_3.png", "Firdaus Riski ", "Guru Matematika", "3219"),
-                            const SizedBox(width: 18,),
+                            const SizedBox(width: 18),
                           ],
                         ),
                       ),
@@ -310,48 +324,50 @@ class HomeWidget extends ConsumerWidget {
   }
 
   Widget userCard(String image, String name, String work, String likes) {
-    return Container(
-      width: 150,
-      height: 233,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: Colors.white
-      ),
-      child: Material(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+    return Center(
+      child: Container(
+        width: 150,
+        height: 233,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: Colors.white
         ),
-        elevation: 5,
-        child: Column(
-          children: [
-            const SizedBox(height: 15,),
-            Image.asset(image),
-            const SizedBox(height: 11.84,),
-            Text(name, style: GoogleFonts.openSans(fontWeight: FontWeight.w600, fontSize: 16),),
-            Text(name, style: GoogleFonts.openSans(fontWeight: FontWeight.w400, fontSize: 12, color: const Color(0xFF5F5F5F)),),
-            const SizedBox(height: 10,),
-            Padding(
-              padding: const EdgeInsets.only(left: 11, right: 9),
-              child: Row(
-                children: [
-                  Image.asset("assets/images/like_icon.png", height: 24, width: 24,),
-                  Text(likes, style: GoogleFonts.openSans(fontWeight: FontWeight.w600, fontSize: 12, color: const Color(0xFF468CE7)),),
-                  const Spacer(),
-                  Container(
-                    width: 28,
-                    height: 28,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: const Color(0xFF4A8EE8)
-                    ),
-                    child: const Center(
-                      child: Icon(Icons.bookmark_border_outlined, color: Colors.white, size: 18,),
-                    ),
-                  )
-                ],
-              ),
-            )
-          ],
+        child: Material(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          elevation: 5,
+          child: Column(
+            children: [
+              const SizedBox(height: 15,),
+              Image.asset(image),
+              const SizedBox(height: 11.84,),
+              Text(name, style: GoogleFonts.openSans(fontWeight: FontWeight.w600, fontSize: 16),),
+              Text(name, style: GoogleFonts.openSans(fontWeight: FontWeight.w400, fontSize: 12, color: const Color(0xFF5F5F5F)),),
+              const SizedBox(height: 10,),
+              Padding(
+                padding: const EdgeInsets.only(left: 11, right: 9),
+                child: Row(
+                  children: [
+                    Image.asset("assets/images/like_icon.png", height: 24, width: 24,),
+                    Text(likes, style: GoogleFonts.openSans(fontWeight: FontWeight.w600, fontSize: 12, color: const Color(0xFF468CE7)),),
+                    const Spacer(),
+                    Container(
+                      width: 28,
+                      height: 28,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: const Color(0xFF4A8EE8)
+                      ),
+                      child: const Center(
+                        child: Icon(Icons.bookmark_border_outlined, color: Colors.white, size: 18,),
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

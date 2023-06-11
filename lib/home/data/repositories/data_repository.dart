@@ -12,4 +12,15 @@ class DataRepository extends Repository {
     }
     return null;
   }
+
+  @override
+  Future<void> saveAvatar(String path) async {
+    await LocalData().saveUserAvatar(path);
+  }
+
+  @override
+  Future<String?> loadAvatar() async {
+    final path = await LocalData().loadUserAvatar();
+    return path;
+  }
 }

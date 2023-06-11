@@ -6,3 +6,8 @@ final getUserProvider = FutureProvider<UserUseCase?>((ref) async {
   final data = await DataRepository().loadUser();
   return data;
 });
+
+final getAvatarProvider = FutureProvider<String?>((ref) async {
+  final data = await DataRepository().loadAvatar();
+  return data;
+});
