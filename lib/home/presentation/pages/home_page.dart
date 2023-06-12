@@ -173,7 +173,7 @@ class _ScrollableHomeState extends ConsumerState<ScrollableHome> {
                       height: 35,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(11),
-                          color: const Color(0xFFF4F4F4)
+                          color: currentButton == 0 ? const Color(0xFFC7C3C3) : const Color(0xFFF4F4F4)
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -200,7 +200,7 @@ class _ScrollableHomeState extends ConsumerState<ScrollableHome> {
                       height: 35,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(11),
-                          color: const Color(0xFFF4F4F4)
+                          color: currentButton == 1 ? const Color(0xFFC7C3C3) : const Color(0xFFF4F4F4)
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -227,7 +227,7 @@ class _ScrollableHomeState extends ConsumerState<ScrollableHome> {
                       height: 35,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(11),
-                          color: const Color(0xFFF4F4F4)
+                          color: currentButton == 2 ? const Color(0xFFC7C3C3) : const Color(0xFFF4F4F4)
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -254,7 +254,7 @@ class _ScrollableHomeState extends ConsumerState<ScrollableHome> {
                       height: 35,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(11),
-                          color: const Color(0xFFF4F4F4)
+                          color: currentButton == 3 ? const Color(0xFFC7C3C3) : const Color(0xFFF4F4F4)
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
