@@ -81,6 +81,317 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
+class ScrollableHome extends ConsumerStatefulWidget {
+  const ScrollableHome({Key? key}) : super(key: key);
+
+  @override
+  ConsumerState<ScrollableHome> createState() => _ScrollableHomeState();
+}
+
+class _ScrollableHomeState extends ConsumerState<ScrollableHome> {
+  int? currentButton;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 15),
+            child: Center(
+              child: Container(
+                width: 348,
+                height: 210,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    gradient: const LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        colors: [
+                          Color(0xFFA9CBFF),
+                          Color(0xFF458BE7)
+                        ]
+                    )
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 19),
+                          child: Text("Mulai \nBelajar", style: GoogleFonts.prozaLibre(fontWeight: FontWeight.w600, fontSize: 36, color: Colors.white),),
+                        ),
+                        const Spacer(),
+                        Image.asset("assets/images/books_image.png")
+                      ],
+                    ),
+                    Container(
+                      width: 311,
+                      height: 44,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Colors.white
+                      ),
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                            prefixIcon: const Icon(Icons.search, color: Color(0xFF9A9A9A),),
+                            contentPadding: const EdgeInsets.only(left: 5),
+                            hintText: "apa yang ingin kamu pelajari ?",
+                            hintStyle: GoogleFonts.openSans(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14,
+                                color: const Color(0xFF9A9A9A)),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: BorderSide.none
+                            )
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 28, left: 32),
+            child: SizedBox(
+              height: 35,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      ref.read(gurusProvider.notifier).selectSubject("kimia");
+                      setState(() {
+                        currentButton = 0;
+                      });
+                    },
+                    child: Container(
+                      width: 77,
+                      height: 35,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(11),
+                          color: const Color(0xFFF4F4F4)
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset("assets/images/study_1.png"),
+                          Text("kimia", style: GoogleFonts.openSans(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                              color: const Color(0xFF5F5F5F)),)
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 14,),
+                  InkWell(
+                    onTap: () {
+                      ref.read(gurusProvider.notifier).selectSubject("matematika");
+                      setState(() {
+                        currentButton = 1;
+                      });
+                    },
+                    child: Container(
+                      width: 120,
+                      height: 35,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(11),
+                          color: const Color(0xFFF4F4F4)
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset("assets/images/study_2.png"),
+                          Text("matematika", style: GoogleFonts.openSans(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                              color: const Color(0xFF5F5F5F)),)
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 14,),
+                  InkWell(
+                    onTap: () {
+                      ref.read(gurusProvider.notifier).selectSubject("fisika");
+                      setState(() {
+                        currentButton = 2;
+                      });
+                    },
+                    child: Container(
+                      width: 75,
+                      height: 35,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(11),
+                          color: const Color(0xFFF4F4F4)
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset("assets/images/study_3.png"),
+                          Text("fisika", style: GoogleFonts.openSans(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                              color: const Color(0xFF5F5F5F)),)
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 14,),
+                  InkWell(
+                    onTap: () {
+                      ref.read(gurusProvider.notifier).selectSubject("bahasa inggris");
+                      setState(() {
+                        currentButton = 3;
+                      });
+                    },
+                    child: Container(
+                      width: 121,
+                      height: 35,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(11),
+                          color: const Color(0xFFF4F4F4)
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset("assets/images/study_4.png"),
+                          Text("bahasa inggris", style: GoogleFonts.openSans(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                              color: const Color(0xFF5F5F5F)),)
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 14,),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 32, top: 42),
+            child: Row(
+              children: [
+                Image.asset("assets/images/blue_line.png"),
+                const SizedBox(width: 5,),
+                Text("Rekomendasi Guru", style: GoogleFonts.openSans(fontWeight: FontWeight.w600, fontSize: 18),)
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 32, top: 29),
+            child: SizedBox(
+              height: 250,
+              child: Builder(
+                  builder: (context) {
+                    if(currentButton != null) {
+                      if(currentButton == 1) {
+                        return ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            userCard("assets/images/avatar_3.png", "Firdaus Riski ", "Guru Matematika", "3219"),
+                            const SizedBox(width: 18),
+                          ],
+                        );
+                      }
+                      else if(currentButton == 2) {
+                        return ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            userCard("assets/images/avatar_2.png", "Muhammad", "Guru Fisika", "1581"),
+                            const SizedBox(width: 18,),
+                          ],
+                        );
+                      }
+                      else if(currentButton == 3) {
+                        return ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            userCard("assets/images/avatar_1.png", "Anika Rahman", "Guru Bahasa Inggris", "1581"),
+                            const SizedBox(width: 18,),
+                          ],
+                        );
+                      }
+                      return Container();
+                    }
+                    return ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        userCard("assets/images/avatar_1.png", "Anika Rahman", "Guru Bahasa Inggris", "1581"),
+                        const SizedBox(width: 18,),
+                        userCard("assets/images/avatar_2.png", "Muhammad", "Guru Fisika", "1581"),
+                        const SizedBox(width: 18,),
+                        userCard("assets/images/avatar_3.png", "Firdaus Riski ", "Guru Matematika", "3219"),
+                        const SizedBox(width: 18),
+                      ],
+                    );
+                  }
+              ),
+            ),
+          ),
+          const SizedBox(height: 40,)
+        ],
+      ),
+    );
+  }
+
+  Widget userCard(String image, String name, String work, String likes) {
+    return Center(
+      child: Container(
+        width: 150,
+        height: 233,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: Colors.white
+        ),
+        child: Material(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          elevation: 5,
+          child: Column(
+            children: [
+              const SizedBox(height: 15,),
+              Image.asset(image),
+              const SizedBox(height: 11.84,),
+              Text(name, style: GoogleFonts.openSans(fontWeight: FontWeight.w600, fontSize: 16),),
+              Text(work, style: GoogleFonts.openSans(fontWeight: FontWeight.w400, fontSize: 12, color: const Color(0xFF5F5F5F)),),
+              const SizedBox(height: 10,),
+              Padding(
+                padding: const EdgeInsets.only(left: 11, right: 9),
+                child: Row(
+                  children: [
+                    Image.asset("assets/images/like_icon.png", height: 24, width: 24,),
+                    Text(likes, style: GoogleFonts.openSans(fontWeight: FontWeight.w600, fontSize: 12, color: const Color(0xFF468CE7)),),
+                    const Spacer(),
+                    Container(
+                      width: 28,
+                      height: 28,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: const Color(0xFF4A8EE8)
+                      ),
+                      child: const Center(
+                        child: Icon(Icons.bookmark_border_outlined, color: Colors.white, size: 18,),
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
 class HomeWidget extends ConsumerStatefulWidget {
   const HomeWidget({Key? key, required this.value}) : super(key: key);
 
@@ -132,185 +443,7 @@ class _HomeWidgetState extends ConsumerState<HomeWidget> {
                   ],
                 ),
               ),
-              body: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 15),
-                      child: Center(
-                        child: Container(
-                          width: 348,
-                          height: 210,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              gradient: const LinearGradient(
-                                  begin: Alignment.topRight,
-                                  end: Alignment.bottomLeft,
-                                  colors: [
-                                    Color(0xFFA9CBFF),
-                                    Color(0xFF458BE7)
-                                  ]
-                              )
-                          ),
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 19),
-                                    child: Text("Mulai \nBelajar", style: GoogleFonts.prozaLibre(fontWeight: FontWeight.w600, fontSize: 36, color: Colors.white),),
-                                  ),
-                                  const Spacer(),
-                                  Image.asset("assets/images/books_image.png")
-                                ],
-                              ),
-                              Container(
-                                width: 311,
-                                height: 44,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12),
-                                    color: Colors.white
-                                ),
-                                child: TextFormField(
-                                  decoration: InputDecoration(
-                                      prefixIcon: const Icon(Icons.search, color: Color(0xFF9A9A9A),),
-                                      contentPadding: const EdgeInsets.only(left: 5),
-                                      hintText: "apa yang ingin kamu pelajari ?",
-                                      hintStyle: GoogleFonts.openSans(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 14,
-                                          color: const Color(0xFF9A9A9A)),
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(12),
-                                          borderSide: BorderSide.none
-                                      )
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 28, left: 32),
-                      child: SizedBox(
-                        height: 35,
-                        child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: [
-                            Container(
-                              width: 77,
-                              height: 35,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(11),
-                                  color: const Color(0xFFF4F4F4)
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset("assets/images/study_1.png"),
-                                  Text("kimia", style: GoogleFonts.openSans(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14,
-                                      color: const Color(0xFF5F5F5F)),)
-                                ],
-                              ),
-                            ),
-                            const SizedBox(width: 14,),
-                            Container(
-                              width: 120,
-                              height: 35,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(11),
-                                  color: const Color(0xFFF4F4F4)
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset("assets/images/study_2.png"),
-                                  Text("matematika", style: GoogleFonts.openSans(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14,
-                                      color: const Color(0xFF5F5F5F)),)
-                                ],
-                              ),
-                            ),
-                            const SizedBox(width: 14,),
-                            Container(
-                              width: 75,
-                              height: 35,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(11),
-                                  color: const Color(0xFFF4F4F4)
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset("assets/images/study_3.png"),
-                                  Text("fisika", style: GoogleFonts.openSans(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14,
-                                      color: const Color(0xFF5F5F5F)),)
-                                ],
-                              ),
-                            ),
-                            const SizedBox(width: 14,),
-                            Container(
-                              width: 121,
-                              height: 35,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(11),
-                                  color: const Color(0xFFF4F4F4)
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset("assets/images/study_4.png"),
-                                  Text("bahasa inggris", style: GoogleFonts.openSans(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14,
-                                      color: const Color(0xFF5F5F5F)),)
-                                ],
-                              ),
-                            ),
-                            const SizedBox(width: 14,),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 32, top: 42),
-                      child: Row(
-                        children: [
-                          Image.asset("assets/images/blue_line.png"),
-                          const SizedBox(width: 5,),
-                          Text("Rekomendasi Guru", style: GoogleFonts.openSans(fontWeight: FontWeight.w600, fontSize: 18),)
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 32, top: 29),
-                      child: SizedBox(
-                        height: 250,
-                        child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: [
-                            userCard("assets/images/avatar_1.png", "Anika Rahman", "Guru Bahasa Inggris", "1581"),
-                            const SizedBox(width: 18,),
-                            userCard("assets/images/avatar_2.png", "Muhammad", "Guru Fisika", "1581"),
-                            const SizedBox(width: 18,),
-                            userCard("assets/images/avatar_3.png", "Firdaus Riski ", "Guru Matematika", "3219"),
-                            const SizedBox(width: 18),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 40,)
-                  ],
-                ),
-              ),
+              body: ScrollableHome()
           );
         },
         error: (error, stacktrace) {
@@ -325,56 +458,6 @@ class _HomeWidgetState extends ConsumerState<HomeWidget> {
             child: CircularProgressIndicator(),
           ),
         )
-    );
-  }
-
-  Widget userCard(String image, String name, String work, String likes) {
-    return Center(
-      child: Container(
-        width: 150,
-        height: 233,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: Colors.white
-        ),
-        child: Material(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          elevation: 5,
-          child: Column(
-            children: [
-              const SizedBox(height: 15,),
-              Image.asset(image),
-              const SizedBox(height: 11.84,),
-              Text(name, style: GoogleFonts.openSans(fontWeight: FontWeight.w600, fontSize: 16),),
-              Text(name, style: GoogleFonts.openSans(fontWeight: FontWeight.w400, fontSize: 12, color: const Color(0xFF5F5F5F)),),
-              const SizedBox(height: 10,),
-              Padding(
-                padding: const EdgeInsets.only(left: 11, right: 9),
-                child: Row(
-                  children: [
-                    Image.asset("assets/images/like_icon.png", height: 24, width: 24,),
-                    Text(likes, style: GoogleFonts.openSans(fontWeight: FontWeight.w600, fontSize: 12, color: const Color(0xFF468CE7)),),
-                    const Spacer(),
-                    Container(
-                      width: 28,
-                      height: 28,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: const Color(0xFF4A8EE8)
-                      ),
-                      child: const Center(
-                        child: Icon(Icons.bookmark_border_outlined, color: Colors.white, size: 18,),
-                      ),
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
     );
   }
 }
