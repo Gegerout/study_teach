@@ -5,15 +5,17 @@ import 'package:study_teach/auth/domain/usecases/user_usecase.dart';
 
 class DataRepository extends Repository {
   @override
-  Future<void> createUser(UserUseCase user) async {
+  Future<UserUseCase> createUser(UserUseCase user) async {
     final model = UserModel(user.name, user.phone, user.email);
     await LocalData().createUser(model);
+    return user;
   }
 
   @override
-  Future<void> loginUser(UserUseCase user) async {
+  Future<UserUseCase> loginUser(UserUseCase user) async {
     final model = UserModel(user.name, user.phone, user.email);
     await LocalData().loginUser(model);
+    return user;
   }
 
 }

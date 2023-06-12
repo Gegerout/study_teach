@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:study_teach/core/widgets/nav_bar.dart';
+import 'package:study_teach/home/domain/usecases/user_usecase.dart';
 import 'package:study_teach/home/presentation/pages/light_page.dart';
 import 'package:study_teach/home/presentation/pages/notifications_page.dart';
 import 'package:study_teach/home/presentation/pages/profile_page.dart';
@@ -11,7 +12,9 @@ import 'package:study_teach/home/presentation/pages/study_page.dart';
 import 'package:study_teach/home/presentation/states/home_provider.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key, required this.value}) : super(key: key);
+
+  final UserUseCase value;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -23,7 +26,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final screens = [
-      HomeWidget(),
+      HomeWidget(value: widget.value,),
       StudyPage(),
       LightPage(),
       NotificationsPage(),
@@ -79,7 +82,9 @@ class _HomePageState extends State<HomePage> {
 }
 
 class HomeWidget extends ConsumerStatefulWidget {
-  const HomeWidget({Key? key}) : super(key: key);
+  const HomeWidget({Key? key, required this.value}) : super(key: key);
+
+  final UserUseCase value;
 
   @override
   ConsumerState<HomeWidget> createState() => _HomeWidgetState();
@@ -118,7 +123,7 @@ class _HomeWidgetState extends ConsumerState<HomeWidget> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 8),
-                      child: Text("Hello ${value?.name}", style: GoogleFonts.openSans(fontWeight: FontWeight.w600, fontSize: 20, color: Colors.black),),
+                      child: Text("Hello ${widget.value.name}", style: GoogleFonts.openSans(fontWeight: FontWeight.w600, fontSize: 20, color: Colors.black),),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 53),

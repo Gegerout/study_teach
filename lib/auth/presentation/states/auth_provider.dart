@@ -46,9 +46,10 @@ class SignUpNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  void createUser(String name, String phone, String email) async {
+  Future<UserUseCase> createUser(String name, String phone, String email) async {
     final user = UserUseCase(name, phone, email);
-    await DataRepository().createUser(user);
+    final usecase = await DataRepository().createUser(user);
+    return usecase;
   }
 }
 
@@ -81,8 +82,9 @@ class SignInNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  void loginUser(String email) async {
+  Future<UserUseCase> loginUser(String email) async {
     final user = UserUseCase("name", "phone", email);
-    await DataRepository().loginUser(user);
+    final usecase = await DataRepository().loginUser(user);
+    return usecase;
   }
 }

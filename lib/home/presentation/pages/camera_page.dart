@@ -42,8 +42,8 @@ class _CameraPageState extends State<CameraPage> {
     await controller.setFlashMode(FlashMode.auto);
     final file = await controller.takePicture();
     await DataRepository().saveAvatar(file.path);
-    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
-    //Navigator.pop(context);
+    //Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
+    Navigator.pop(context, true);
   }
 
   @override

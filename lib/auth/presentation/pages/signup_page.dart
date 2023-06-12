@@ -6,6 +6,8 @@ import 'package:study_teach/auth/presentation/states/auth_provider.dart';
 import 'package:study_teach/core/utils/textinput_formatter.dart';
 import 'package:study_teach/home/presentation/pages/home_page.dart';
 
+import '../../../home/domain/usecases/user_usecase.dart';
+
 class SignUpPage extends ConsumerStatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
 
@@ -354,8 +356,10 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                                       backgroundColor: Colors.transparent,
                                       shadowColor: Colors.transparent),
                                   onPressed: ref.watch(signupProvider).isChecked ? () {
-                                    ref.read(signupProvider.notifier).createUser(nameCont.text, phoneCont.text, emailCont.text);
-                                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
+                                    ref.read(signupProvider.notifier).createUser(nameCont.text, phoneCont.text, emailCont.text).then((value) {
+                                      final usecase = UserUseCase(value.name, value.phone, value.email);
+                                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomePage(value: usecase,)), (route) => false);
+                                    });
                                   } : () {
                                     showDialog(context: context, builder: (context) {
                                       if(!ref.watch(signupProvider).isEmail) {

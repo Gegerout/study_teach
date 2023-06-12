@@ -29,7 +29,8 @@ class MyApp extends ConsumerWidget {
           body: ref.watch(getUserProvider).when(
               data: (value) {
                 if(value != null) {
-                  return HomePage();
+                  return HomePage(value: value,);
+                  //return OnboardingPage();
                 }
                 return OnboardingPage();
               },

@@ -17,9 +17,15 @@ class ProfilePage extends ConsumerStatefulWidget {
 
 class _ProfilePageState extends ConsumerState<ProfilePage> {
 
+  refresh() {
+    setState(() {
+    });
+  }
+
   @override
   void initState() {
     super.initState();
+    ref.refresh(getUserProvider);
     ref.refresh(getAvatarProvider);
   }
 
@@ -37,7 +43,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                     onPressed: () {
                       Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) => HomePage()),
+                          MaterialPageRoute(builder: (context) => HomePage(value: value!,)),
                           (route) => false);
                     },
                     icon: const Icon(
@@ -67,8 +73,12 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                       child: Row(
                         children: [
                           InkWell(
-                            onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => CameraPage()));},
+                            onTap: () async {
+                              final bool result = await Navigator.push(context, MaterialPageRoute(builder: (context) => CameraPage()));
+                              if(result) {
+                                ref.refresh(getAvatarProvider);
+                              }
+                              },
                             child: Stack(
                               alignment: Alignment.bottomRight,
                               children: [
