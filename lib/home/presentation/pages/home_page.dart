@@ -11,6 +11,8 @@ import 'package:study_teach/home/presentation/pages/profile_page.dart';
 import 'package:study_teach/home/presentation/pages/study_page.dart';
 import 'package:study_teach/home/presentation/states/home_provider.dart';
 
+var scaffoldKey = GlobalKey<ScaffoldState>();
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.value}) : super(key: key);
 
@@ -34,6 +36,8 @@ class _HomePageState extends State<HomePage> {
     ];
 
     return Scaffold(
+      key: scaffoldKey,
+      drawer: const NavBar(),
       body: screens.elementAt(currentIndex),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(bottom: 15, left: 28, right: 32),
@@ -411,13 +415,9 @@ class _HomeWidgetState extends ConsumerState<HomeWidget> {
 
   @override
   Widget build(BuildContext context) {
-    var scaffoldKey = GlobalKey<ScaffoldState>();
-
     return ref.watch(getUserProvider).when(
         data: (value) {
           return Scaffold(
-              key: scaffoldKey,
-              drawer: const NavBar(),
               appBar: AppBar(
                 backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                 elevation: 0,
