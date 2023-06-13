@@ -30,6 +30,9 @@ class _StudyPageState extends ConsumerState<StudyPage> {
               child: InkWell( onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => NotifikasiPage()));
               }, child: const Text('One')),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => NotifikasiPage()));
+            },
           ),
           const PopupMenuItem<String>(
               value: 'Two',

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:study_teach/home/presentation/pages/video_page.dart';
 
 class NotifikasiPage extends StatelessWidget {
   const NotifikasiPage({Key? key}) : super(key: key);
@@ -261,7 +262,12 @@ class NotifikasiPage extends StatelessWidget {
                   const SizedBox(width: 10,),
                   InkWell(child: Image.asset("assets/images/twitter.png")),
                   const SizedBox(width: 10,),
-                  InkWell(child: Image.asset("assets/images/youtube.png"))
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => VideoPage()));
+                    },
+                      child: Image.asset("assets/images/youtube.png")
+                  )
                 ],
               ),
             ),
