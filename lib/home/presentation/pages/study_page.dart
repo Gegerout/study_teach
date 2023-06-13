@@ -5,7 +5,7 @@ import 'package:study_teach/home/presentation/pages/home_page.dart';
 import 'package:study_teach/home/presentation/states/home_provider.dart';
 
 class StudyPage extends ConsumerStatefulWidget {
-  StudyPage({Key? key}) : super(key: key);
+  const StudyPage({Key? key}) : super(key: key);
 
   @override
   ConsumerState<StudyPage> createState() => _StudyPageState();
@@ -16,40 +16,36 @@ class _StudyPageState extends ConsumerState<StudyPage> {
 
   GlobalKey secondKey = GlobalKey();
 
-  late Offset tapXY;
-  late Offset tapXY2;
-
-  late RenderBox overlay;
-  late RenderBox overlay2;
-
   @override
   Widget build(BuildContext context) {
-    overlay = Overlay.of(context).context.findRenderObject() as RenderBox;
-    overlay2 = Overlay.of(context).context.findRenderObject() as RenderBox;
 
-    void _showPopupMenu1() async {
+    void showPopupMenu1() async {
       await showMenu(
         context: context,
-        position: relRectSize,
+        position: const RelativeRect.fromLTRB(344.7, 55.6, 26.7, 587.8),
         items: [
           const PopupMenuItem<String>(
-              child: Text('One'), value: 'Doge'),
+              value: 'One',
+              child: Text('One')),
           const PopupMenuItem<String>(
-              child: Text('Two'), value: 'Lion'),
+              value: 'Two',
+              child: Text('Two')),
         ],
         elevation: 8.0,
       );
     }
 
-    void _showPopupMenu2() async {
+    void showPopupMenu2() async {
       await showMenu(
         context: context,
-        position: relRectSize2,
+        position: const RelativeRect.fromLTRB(334.1, 477.7, 37.3, 165.8),
         items: [
           const PopupMenuItem<String>(
-              child: Text('One'), value: 'Doge'),
+              value: 'One',
+              child: Text('One')),
           const PopupMenuItem<String>(
-              child: Text('Two'), value: 'Lion'),
+              value: 'Two',
+              child: Text('Two')),
         ],
         elevation: 8.0,
       );
@@ -73,11 +69,10 @@ class _StudyPageState extends ConsumerState<StudyPage> {
                   Container(
                     key: firstKey,
                     child: InkWell(
-                      onTapDown: getPosition,
-                      onLongPress: _showPopupMenu1,
+                      //onLongPress: _showPopupMenu1,
                       child: IconButton(
                           onPressed: () {
-                            _showPopupMenu1();
+                            showPopupMenu1();
                           }, icon: const Icon(Icons.more_vert, color: Colors.black,)),
                     ),
                   )
@@ -234,11 +229,8 @@ class _StudyPageState extends ConsumerState<StudyPage> {
                                     Padding(
                                       padding: const EdgeInsets.only(),
                                       child: InkWell(
-                                        onTapDown: getPosition2,
-                                        onLongPress: _showPopupMenu2,
                                         child: IconButton(onPressed: () {
-                                          //print("hello");
-                                          _showPopupMenu2();
+                                          showPopupMenu2();
                                         }, icon: const Icon(Icons.more_vert,)),
                                       ),
                                     )
@@ -321,16 +313,5 @@ class _StudyPageState extends ConsumerState<StudyPage> {
             child: CircularProgressIndicator(),
           ),
         ));
-  }
-
-  RelativeRect get relRectSize => RelativeRect.fromSize(tapXY & const Size(40,40), overlay.size);
-  RelativeRect get relRectSize2 => RelativeRect.fromSize(tapXY2 & const Size(40,40), overlay2.size);
-
-  // ↓ get the tap position Offset
-  void getPosition(TapDownDetails detail) {
-    tapXY = detail.globalPosition;
-  }
-  void getPosition2(TapDownDetails detail) {
-    tapXY2 = detail.globalPosition;
   }
 }
