@@ -12,7 +12,9 @@ class NotifikasiPage extends StatelessWidget {
         backgroundColor: const Color(0xFF5775BA),
         elevation: 0,
         leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
             icon: const Icon(
               Icons.arrow_back,
               color: Colors.white,
