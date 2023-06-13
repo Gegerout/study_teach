@@ -139,6 +139,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
               child: Center(
                   child: Text(
                 "StudyTeach",
+                    key: const Key("Study"),
                 style: GoogleFonts.passeroOne(
                     fontWeight: FontWeight.w400,
                     fontSize: 64,
@@ -160,6 +161,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
               padding: const EdgeInsets.only(bottom: 40),
               child: Text(
                 subtitle,
+                key: const Key("Subtitle"),
                 style: GoogleFonts.openSans(
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
