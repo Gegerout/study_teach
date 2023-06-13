@@ -252,6 +252,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                                       ]),
                                   borderRadius: BorderRadius.circular(10)),
                               child: ElevatedButton(
+                                  key: const Key("Enter"),
                                   style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.transparent,
                                       shadowColor: Colors.transparent),

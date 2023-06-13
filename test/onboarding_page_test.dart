@@ -8,6 +8,15 @@ void main() async {
   TestWidgetsFlutterBinding.ensureInitialized();
   final data = await DataRepository().loadData();
   group("onboarding page tests", () {
+    test("all data correctly extracted", () {
+      final model = data.data;
+      expect(model[0].subtitle, "Saat kau terpuruk, percayalah \nbahwa ilmu yang sudah \ndipelajari akan berarti \nkemudian hari.");
+      expect(model[0].image, "assets/images/onb1.png");
+      expect(model[1].subtitle, "Raihlah ilmu dan untuk \nmeraih ilmu, belajarlah untuk \ntenang dan sabar.");
+      expect(model[1].image, "assets/images/onb2.png");
+      expect(model[2].subtitle, "Saat dirimu menghadapi \nperubahan, percayalah ada \nyang selalu membantu. ");
+      expect(model[2].image, "assets/images/onb3.png");
+    });
     testWidgets("titles displayed correctly", (WidgetTester tester) async {
       final continueButton = find.byType(ElevatedButton);
       final title1 = find.text(data.data[0].subtitle);

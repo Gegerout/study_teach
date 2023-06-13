@@ -29,7 +29,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-        body: Stack(
+      body: Stack(
         children: [
           Center(
             child: Image.asset(
@@ -135,7 +135,8 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(right: 10),
-                                child: Image.asset("assets/images/user_icon.png"),
+                                child:
+                                    Image.asset("assets/images/user_icon.png"),
                               ),
                               Text(
                                 "Full name",
@@ -158,15 +159,26 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                             child: TextFormField(
                               controller: nameCont,
                               onChanged: (value) {
-                                ref.read(signupProvider.notifier).checkCreds(value, phoneCont.text, emailCont.text, passwordCont.text);
+                                ref.read(signupProvider.notifier).checkCreds(
+                                    value,
+                                    phoneCont.text,
+                                    emailCont.text,
+                                    passwordCont.text);
                               },
                               style: GoogleFonts.openSans(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 11,
                                   color: const Color(0xFF888888)),
                               decoration: InputDecoration(
-                                  contentPadding: const EdgeInsets.only(left: 18),
-                                  suffixIcon: ref.watch(signupProvider).isName ? Image.asset("assets/images/success_icon.png") : const Icon(Icons.close, color: Color(0xFFEB4335),),
+                                  contentPadding:
+                                      const EdgeInsets.only(left: 18),
+                                  suffixIcon: ref.watch(signupProvider).isName
+                                      ? Image.asset(
+                                          "assets/images/success_icon.png")
+                                      : const Icon(
+                                          Icons.close,
+                                          color: Color(0xFFEB4335),
+                                        ),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                       borderSide: BorderSide.none),
@@ -209,15 +221,26 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                               controller: phoneCont,
                               keyboardType: TextInputType.phone,
                               onChanged: (value) {
-                                ref.read(signupProvider.notifier).checkCreds(nameCont.text, value, emailCont.text, passwordCont.text);
+                                ref.read(signupProvider.notifier).checkCreds(
+                                    nameCont.text,
+                                    value,
+                                    emailCont.text,
+                                    passwordCont.text);
                               },
                               style: GoogleFonts.openSans(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 11,
                                   color: const Color(0xFF888888)),
                               decoration: InputDecoration(
-                                  contentPadding: const EdgeInsets.only(left: 18),
-                                  suffixIcon: ref.watch(signupProvider).isPhone ? Image.asset("assets/images/success_icon.png") : const Icon(Icons.close, color: Color(0xFFEB4335),),
+                                  contentPadding:
+                                      const EdgeInsets.only(left: 18),
+                                  suffixIcon: ref.watch(signupProvider).isPhone
+                                      ? Image.asset(
+                                          "assets/images/success_icon.png")
+                                      : const Icon(
+                                          Icons.close,
+                                          color: Color(0xFFEB4335),
+                                        ),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                       borderSide: BorderSide.none),
@@ -235,7 +258,8 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(right: 10),
-                                child: Image.asset("assets/images/mail_icon.png"),
+                                child:
+                                    Image.asset("assets/images/mail_icon.png"),
                               ),
                               Text(
                                 "Email address",
@@ -257,20 +281,29 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                                 color: const Color(0xFFE9E9E9)),
                             child: TextFormField(
                               controller: emailCont,
-                              inputFormatters: [
-                                LowerCaseTextFormatter()
-                              ],
+                              inputFormatters: [LowerCaseTextFormatter()],
                               keyboardType: TextInputType.emailAddress,
                               onChanged: (value) {
-                                ref.read(signupProvider.notifier).checkCreds(nameCont.text, phoneCont.text, value, passwordCont.text);
+                                ref.read(signupProvider.notifier).checkCreds(
+                                    nameCont.text,
+                                    phoneCont.text,
+                                    value,
+                                    passwordCont.text);
                               },
                               style: GoogleFonts.openSans(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 11,
                                   color: const Color(0xFF888888)),
                               decoration: InputDecoration(
-                                  contentPadding: const EdgeInsets.only(left: 18),
-                                  suffixIcon: ref.watch(signupProvider).isEmail ? Image.asset("assets/images/success_icon.png") : const Icon(Icons.close, color: Color(0xFFEB4335),),
+                                  contentPadding:
+                                      const EdgeInsets.only(left: 18),
+                                  suffixIcon: ref.watch(signupProvider).isEmail
+                                      ? Image.asset(
+                                          "assets/images/success_icon.png")
+                                      : const Icon(
+                                          Icons.close,
+                                          color: Color(0xFFEB4335),
+                                        ),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                       borderSide: BorderSide.none),
@@ -288,7 +321,8 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(right: 10),
-                                child: Image.asset("assets/images/lock_icon.png"),
+                                child:
+                                    Image.asset("assets/images/lock_icon.png"),
                               ),
                               Text(
                                 "Password",
@@ -311,7 +345,11 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                             child: TextFormField(
                               controller: passwordCont,
                               onChanged: (value) {
-                                ref.read(signupProvider.notifier).checkCreds(nameCont.text, phoneCont.text, emailCont.text, value);
+                                ref.read(signupProvider.notifier).checkCreds(
+                                    nameCont.text,
+                                    phoneCont.text,
+                                    emailCont.text,
+                                    value);
                               },
                               style: GoogleFonts.openSans(
                                   fontWeight: FontWeight.w700,
@@ -319,12 +357,34 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                                   color: const Color(0xFF888888)),
                               obscureText: !isVisible,
                               decoration: InputDecoration(
-                                  contentPadding: const EdgeInsets.only(left: 18),
-                                  suffixIcon: IconButton(onPressed: () {
-                                    setState(() {
-                                      isVisible = !isVisible;
-                                    });
-                                  }, icon: isVisible ? Icon(Icons.visibility_off, color: ref.watch(signupProvider).isPassword ? const Color(0xFF007BFF) : const Color(0xFFEB4335,),) : Icon(Icons.visibility, color: ref.watch(signupProvider).isPassword ? const Color(0xFF007BFF) : const Color(0xFFEB4335,)),),
+                                  contentPadding:
+                                      const EdgeInsets.only(left: 18),
+                                  suffixIcon: IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        isVisible = !isVisible;
+                                      });
+                                    },
+                                    icon: isVisible
+                                        ? Icon(
+                                            Icons.visibility_off,
+                                            color: ref
+                                                    .watch(signupProvider)
+                                                    .isPassword
+                                                ? const Color(0xFF007BFF)
+                                                : const Color(
+                                                    0xFFEB4335,
+                                                  ),
+                                          )
+                                        : Icon(Icons.visibility,
+                                            color: ref
+                                                    .watch(signupProvider)
+                                                    .isPassword
+                                                ? const Color(0xFF007BFF)
+                                                : const Color(
+                                                    0xFFEB4335,
+                                                  )),
+                                  ),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                       borderSide: BorderSide.none),
@@ -347,55 +407,105 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                                       begin: const Alignment(0, -1),
                                       end: const Alignment(0, 0),
                                       colors: [
-                                        const Color(0xFF918FF2).withOpacity(0.9),
-                                        const Color(0xFFAA89DF).withOpacity(0.4),
+                                        const Color(0xFF918FF2)
+                                            .withOpacity(0.9),
+                                        const Color(0xFFAA89DF)
+                                            .withOpacity(0.4),
                                       ]),
                                   borderRadius: BorderRadius.circular(10)),
                               child: ElevatedButton(
+                                key: const Key("Enter"),
                                   style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.transparent,
                                       shadowColor: Colors.transparent),
-                                  onPressed: ref.watch(signupProvider).isChecked ? () {
-                                    ref.read(signupProvider.notifier).createUser(nameCont.text, phoneCont.text, emailCont.text).then((value) {
-                                      final usecase = UserUseCase(value.name, value.phone, value.email);
-                                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomePage(value: usecase,)), (route) => false);
-                                    });
-                                  } : () {
-                                    showDialog(context: context, builder: (context) {
-                                      if(!ref.watch(signupProvider).isEmail) {
-                                        return AlertDialog(
-                                          title: const Text("Wrong Email"),
-                                          actions: [
-                                            ElevatedButton(onPressed: () => Navigator.pop(context), child: const Text("Ok"))
-                                          ],
-                                        );
-                                      }
-                                      else if(!ref.watch(signupProvider).isPhone) {
-                                        return AlertDialog(
-                                          title: const Text("Wrong Phone"),
-                                          actions: [
-                                            ElevatedButton(onPressed: () => Navigator.pop(context), child: const Text("Ok"))
-                                          ],
-                                        );
-                                      }
-                                      else if(!ref.watch(signupProvider).isName) {
-                                        return AlertDialog(
-                                          title: const Text("Wrong Name"),
-                                          actions: [
-                                            ElevatedButton(onPressed: () => Navigator.pop(context), child: const Text("Ok"))
-                                          ],
-                                        );
-                                      }
-                                      else {
-                                        return AlertDialog(
-                                          title: const Text("Wrong Password"),
-                                          actions: [
-                                            ElevatedButton(onPressed: () => Navigator.pop(context), child: const Text("Ok"))
-                                          ],
-                                        );
-                                      }
-                                    });
-                                  },
+                                  onPressed: ref.watch(signupProvider).isChecked
+                                      ? () {
+                                          ref
+                                              .read(signupProvider.notifier)
+                                              .createUser(
+                                                  nameCont.text,
+                                                  phoneCont.text,
+                                                  emailCont.text)
+                                              .then((value) {
+                                            final usecase = UserUseCase(
+                                                value.name,
+                                                value.phone,
+                                                value.email);
+                                            Navigator.pushAndRemoveUntil(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        HomePage(
+                                                          value: usecase,
+                                                        )),
+                                                (route) => false);
+                                          });
+                                        }
+                                      : () {
+                                          showDialog(
+                                              context: context,
+                                              builder: (context) {
+                                                if (!ref
+                                                    .watch(signupProvider)
+                                                    .isName) {
+                                                  return AlertDialog(
+                                                    title: const Text(
+                                                        "Wrong Name"),
+                                                    actions: [
+                                                      ElevatedButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  context),
+                                                          child:
+                                                              const Text("Ok"))
+                                                    ],
+                                                  );
+                                                } else if (!ref
+                                                    .watch(signupProvider)
+                                                    .isPhone) {
+                                                  return AlertDialog(
+                                                    title: const Text(
+                                                        "Wrong Phone"),
+                                                    actions: [
+                                                      ElevatedButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  context),
+                                                          child:
+                                                              const Text("Ok"))
+                                                    ],
+                                                  );
+                                                } else if (!ref
+                                                    .watch(signupProvider)
+                                                    .isEmail) {
+                                                  return AlertDialog(
+                                                    title: const Text(
+                                                        "Wrong Email"),
+                                                    actions: [
+                                                      ElevatedButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  context),
+                                                          child:
+                                                              const Text("Ok"))
+                                                    ],
+                                                  );
+                                                } else {
+                                                  return AlertDialog(
+                                                    title: const Text(
+                                                        "Wrong Password"),
+                                                    actions: [
+                                                      ElevatedButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  context),
+                                                          child:
+                                                              const Text("Ok"))
+                                                    ],
+                                                  );
+                                                }
+                                              });
+                                        },
                                   child: Text(
                                     "Sign up",
                                     style: GoogleFonts.openSans(
@@ -419,10 +529,14 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                                     color: const Color(0xFF524E48)),
                               ),
                               SizedBox(
-                                width: 71,
+                                  width: 71,
                                   child: TextButton(
                                       onPressed: () {
-                                        Navigator.push(context, MaterialPageRoute(builder: (context) => SignInPage()));
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    SignInPage()));
                                       },
                                       child: Text(
                                         "Sign in",
@@ -435,10 +549,18 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width - 224, right: MediaQuery.of(context).size.width - 224, top: 10),
-                          child: const Divider(height: 1, color: Color(0xFF959595),),
+                          padding: EdgeInsets.only(
+                              left: MediaQuery.of(context).size.width - 224,
+                              right: MediaQuery.of(context).size.width - 224,
+                              top: 10),
+                          child: const Divider(
+                            height: 1,
+                            color: Color(0xFF959595),
+                          ),
                         ),
-                        const SizedBox(height: 80,)
+                        const SizedBox(
+                          height: 80,
+                        )
                       ],
                     ),
                   ),
