@@ -33,6 +33,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     return ref.watch(onboardingProvider).when(
         data: (value) {
           return Scaffold(
+            backgroundColor: const Color(0xFF0046FB),
             body: Stack(
               children: [
                   Builder(

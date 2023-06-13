@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:study_teach/home/presentation/pages/home_page.dart';
+import 'package:study_teach/home/presentation/pages/notifikasi_page.dart';
 import 'package:study_teach/home/presentation/states/home_provider.dart';
 
 class StudyPage extends ConsumerStatefulWidget {
@@ -24,9 +25,12 @@ class _StudyPageState extends ConsumerState<StudyPage> {
         context: context,
         position: const RelativeRect.fromLTRB(344.7, 55.6, 26.7, 587.8),
         items: [
-          const PopupMenuItem<String>(
+          PopupMenuItem<String>(
               value: 'One',
-              child: Text('One')),
+              child: InkWell( onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => NotifikasiPage()));
+              }, child: const Text('One')),
+          ),
           const PopupMenuItem<String>(
               value: 'Two',
               child: Text('Two')),
